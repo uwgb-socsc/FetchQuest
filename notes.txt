@@ -1,0 +1,171 @@
+Charisma
+Stamina
+Intelligence
+Perception
+Agility
+Luck
+Tool Use*
+Dexterity
+Defense
+Strength
+
+Breeds: (= playable for sure)
+Collie=
+	++Intelligence
+	+Tool Use
+	-Charisma
+Retriever=
+	(neutral?)
+	++Perception
+	+Dexterity
+	-Intelligence
+Chihuahua=
+	++Luck
+	+Stamina
+	-Strength
+St. Bernard=
+	++Strength
+	+Defense
+	-Agility
+Terrier=
+	++Agility
+	+Speed
+	-Defense
+Husky=
+	++Charisma
+	+Intelligence
+	-Luck
+Pomeranian
+Great Dane
+Dalmation
+German Shepherd
+Shiba Inu
+Pitbull
+
+FIRST PERSON RPG
+3-D objects
+
+Dog's owner threw a ball (into a cave) and ADVENTURE!!!!!!!! :D
+Alternate Reality where this sort of thing is possible
+Possible antagonist (per level)
+Random enemies in the form of other animals and people (mail man, dog catcher)
+
+Combat
+	Turn-Based
+	Enemies In the Levels
+	Drop Rates for Enemies (influenced by luck; different ones for different enemies)
+	Initiative (determined by stats)
+	Options (each has sub-options):
+		Attack
+		Defend
+		Items
+		Run (not allowed during key battles, influenced by luck and agility)
+
+Level Up
+	Leveling up occurs over time
+	Level up all stats
+	"Special" stat player chooses to increase each level
+
+	OR
+		
+	Each action would increase XP for relevant actions
+	Based upon what the player does in the game
+	
+
+Magic (?)
+
+Levels
+	Short (if we have more time, we can expand them)
+	"Less than 5 minutes" - Tom
+	"You're quoting me now?!"
+	Doors (of various types)
+	"If you say so" - Matt
+	3 levels, and then boss
+	THE BALL IS MAGIC
+	
+Breaking things
+	Above req. strength level, 100% of breaking it
+	Below, depending upon luck... or maybe not... or maybe so? Okay Yeah
+	Can retry
+	If you fail, you may injure yourself
+
+	"Well, he is taking down quotes"
+
+Hub World
+	Parts unlock as you go
+	platforming
+	Dog Park
+	Portals
+		THE CAKE IS A LIE
+	Ball thrown every world
+
+World 0: Tutorial
+	skippable
+	Access from hub world
+	
+cutscenes?
+
+World 1: City, I guess Shmeverly Bills
+	Some dude's apartment
+	Level 1: Apartment
+	Level 2: Playing with Traffic
+		Cars/semis/etc.
+			Turn-based battle when you run into them
+	Level 3: Paris Hilton's House
+		Doors
+		Boss: Paris Hilton's Chihuahua
+	People
+	Cats
+
+"Don't write that down, Jayke" - Tom
+
+World 2: Sewers
+	Level 1: Aqueduct
+	Level 2: Pipeline
+	Level 3: Filtration PLANT
+		Boss: Mutant Goldfish
+	Alligator
+	Rat
+
+World 3: Cave
+	Level 1: Generic Cave with water
+	Level 2: Lava Cave with more water
+	Level 3: Batcave
+		with doors, and lava, and technology, and all that scary stuff
+		Boss: Batdog (doppelganger)
+
+World 4: Animal shelter :(
+	Level 1: Captured
+	Level 2: Cage
+		Previous bosses in other cages
+	Level 3: Vents
+		Boss: Dog Catcher and Receptionist
+
+World 5: WANNA GO TO SPACE
+	Level 1: Government Facility
+	Level 2: Space Station
+		Ball hits self-destruct button
+	Level 3: Space Shuttle
+		Boss: Brian and Stewie
+	Aliens
+
+"DON'T WRITE THAT DOWN, JAYKE"
+
+Multiplayer?
+	No
+
+"Got a lot done"
+
+Cave?
+
+Dating sim?
+
+Government facility?
+
+Space station?
+
+Animal shelter?
+
+THE END?
+
+Okami
