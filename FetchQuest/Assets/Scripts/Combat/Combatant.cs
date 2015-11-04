@@ -16,16 +16,16 @@ Dexterity
 Defense
 Strength
     */
-    double charisma { get; }
-    double stamina { get; }
-    double intelligence { get; }
-    double perception { get; }
-    double agility { get; }
-    double luck { get; }
-    double toolUse { get; }
-    double dexterity { get; }
-    double defense { get; }
-    double strength { get; }
+    double charisma { get; set; }
+    double stamina { get; set; }
+    double intelligence { get; set; }
+    double perception { get; set; }
+    double agility { get; set; }
+    double luck { get; set; }
+    double toolUse { get; set; }
+    double dexterity { get; set; }
+    double defense { get; set; }
+    double strength { get; set; }
 
     //a list for attacks
     //a list for items. 
