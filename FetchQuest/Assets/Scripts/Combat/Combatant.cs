@@ -6,15 +6,15 @@ public class Combatant : MonoBehaviour {
     // Use this for initialization
     /*
     Charisma
-Stamina
-Intelligence
-Perception
-Agility
-Luck
-Tool Use*
-Dexterity
-Defense
-Strength
+    Stamina
+    Intelligence
+    Perception
+    Agility
+    Luck
+    Tool Use*
+    Dexterity
+    Defense
+    Strength
     */
     double charisma { get; set; }
     double stamina { get; set; }
@@ -38,4 +38,8 @@ Strength
 	void Update () {
 	
 	}
+    void TakeDamage(double damage)
+    {
+        throw new System.NotImplementedException();
+    }
 }

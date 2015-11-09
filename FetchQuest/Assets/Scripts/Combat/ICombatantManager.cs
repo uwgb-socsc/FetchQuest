@@ -3,8 +3,8 @@ using System.Collections;
 
 public interface ICombatantManager  {
 
-    //enum choose();
-    //attack Achoice();
-    //combatant TargetChoice();
-    //item Ichoice();
+    Attack.Special choose();
+    Attack Achoice();
+    Combatant TargetChoice();
+    Item Ichoice();
 }

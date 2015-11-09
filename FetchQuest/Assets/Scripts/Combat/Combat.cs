@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class Combat : MonoBehaviour {
     /*
     This class is what makes the Combat actually work.
@@ -41,5 +43,9 @@ public class Combat : MonoBehaviour {
         */
        
         
+    }
+    double CalcDamage(Combatant attacker, Combatant defender, Attack attack)
+    {
+        throw new System.NotImplementedException();
     }
 }
