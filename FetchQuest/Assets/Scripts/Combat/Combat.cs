@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 
@@ -13,11 +14,14 @@ public class Combat : MonoBehaviour {
     */
     // List of combatants ordered by turn order
     // two more lists of allies and enemies. 
-
+    private ICombatantManager[] combatantManagers; //this my be switched to combatant instead. We'll see.
+    private List<ICombatantManager> listOfCombatantManagers;
     
 	// Use this for initialization
 	void Start () {
-	
+        combatantManagers = GetComponentsInChildren<ICombatantManager>();
+        listOfCombatantManagers = new List<ICombatantManager>(combatantManagers);
+        listOfCombatantManagers.Sort(new CombatantComparer());
 	}
 	
 	// Update is called once per frame

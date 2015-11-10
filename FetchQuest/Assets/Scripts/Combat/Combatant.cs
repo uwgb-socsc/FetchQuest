@@ -27,6 +27,8 @@ public class Combatant : MonoBehaviour {
     double defense { get; set; }
     double strength { get; set; }
 
+    double hp { get; set; }
+
     //a list for attacks
     //a list for items. 
     

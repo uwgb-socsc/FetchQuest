@@ -7,4 +7,5 @@ public interface ICombatantManager  {
     Attack Achoice();
     Combatant TargetChoice();
     Item Ichoice();
+    double getTurnDecider();
 }

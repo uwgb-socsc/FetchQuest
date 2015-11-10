@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class AiCombatantManager : ICombatantManager {
 
@@ -18,5 +19,10 @@ public class AiCombatantManager : ICombatantManager {
     public Item Ichoice()
     {
         throw new System.NotImplementedException();
+    }
+
+    public double getTurnDecider()
+    {
+        throw new NotImplementedException();
     }
 }
