@@ -4,7 +4,7 @@ using System;
 
 public class AiCombatantManager : ICombatantManager {
 
-    public Attack.Special choose()
+    public Combat.choices choose()
     {
         throw new System.NotImplementedException();
     }

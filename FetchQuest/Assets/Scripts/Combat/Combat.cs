@@ -16,6 +16,7 @@ public class Combat : MonoBehaviour {
     // two more lists of allies and enemies. 
     private ICombatantManager[] combatantManagers; //this my be switched to combatant instead. We'll see.
     private List<ICombatantManager> listOfCombatantManagers;
+    public enum choices { attack, item, run };
     
 	// Use this for initialization
 	void Start () {
