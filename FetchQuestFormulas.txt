@@ -1,14 +1,16 @@
+COMBAT CHECKS
 Turn order is determined directly by AGILITY of Attacker
 BaseAttackPower and BaseAttackAccuracy are determined by the Attack
 STRENGTH, LUCK1 are determined by the Attacker
 DEFENSE, STAMINA, PERCEPTION, DEXTERITY, LUCK2 are determined by the Defender
 CriticalModifier is determined by a special trait or is "1" by default
 AdditionalPowerStat and AdditionalAccuracyStat are determined by a special trait or are "0" by default
+CurrentStamina = STAMINA by default
 
 AttackPower = BaseAttackPower * (STRENGTH + AdditionalPowerStat)
 CriticalChance = 0.05 + 0.002 * LUCK1
 DamageTaken = AttackPower / (DEFENSE + AdditionalPowerStat) * CriticalPower
-StaminaRemaining = STAMINA - DamageTaken
+CurrentStamina = CurrentStamina - DamageTaken
 CriticalPower = 1  if  RandomNumber(0,100)>CriticalChance
 CriticalPower = 1.5 * CriticalModifier if  RandomNumber(0,100)<=CriticalChance
 AttackAccuracy = BaseAttackAccuracy * (PERCEPTION + AdditionalAccuracyStat)
@@ -16,16 +18,30 @@ AttackHitChance = AttackAccuracy / (DEXTERITY + (LUCK2 + AdditionalAccuracyStat)
 FleeChance = (PERCEPTION + AGILITY + DEXTERITY) / 3
 
 
+
+PLAYER STATS
+Base Stats are all determined by Breed
+Investment is the accumulation of points placed into that stat upon each level-up
+WeaponPower is the total power of all weapons that the are equipped (Max 2 weapons?)
+ArmorStrength, ArmorWeight, ArmorLuck, ArmorAppeal, ArmorAssistance
+	are determined by the total of these stats for all equipped armor
+WeatherFactors and EnvironmentalFactors are determined by the current location
+ItemLuck, ItemAssistance, ItemWeight, ItemAppeal are determined by the total of these stats for all held items
+(BaseStrength + StrengthInvestment) is capped at 100 as with all other (Base... + ...Investment)
+
+CarryingWeight = ItemWeight + ArmorWeight
+CurrentStaminaPercent = (CurrentStamina + STAMINA) * 100
+
 STRENGTH     = BaseStrength     + StrengthInvestment     + WeaponPower
 DEFENSE      = BaseDefense      + DefenseInvestment      + ArmorStrength
 STAMINA      = BaseStamina      + StaminaInvestment      + ??
 PERCEPTION   = BasePerception   + PerceptionInvestment   + WeatherFactors
 DEXTERITY    = BaseDexterity    + DexterityInvestment    + EnvironmentalFactors
-AGILITY      = BaseAgility      + AgilityInvestment      - ArmorWeight/2
+AGILITY      = BaseAgility      + AgilityInvestment      - CarryingWeight/2
 LUCK         = BaseLuck         + LuckInvestment         + (ArmorLuck + ItemLuck)
-CHARISMA     = BaseCharisma     + CharismaInvestment     + ArmorAppeal
+CHARISMA     = BaseCharisma     + CharismaInvestment     + (ArmorAppeal + ItemAppeal)
 INTELLIGENCE = BaseIntelligence + IntelligenceInvestment - (85 - (200/[Math.PI]) * arctan(CurrentStaminaPercent / 25) )
-CRAFTINESS   = BaseCraftiness   + CraftinessInvestment   + ItemAssistance
+CRAFTINESS   = BaseCraftiness   + CraftinessInvestment   + (ArmorAssistance + ItemAssistance)
 
 Notes on INTELLIGENCE
 	the last part of INTELLIGENCE is asymptotic to 0
@@ -34,3 +50,13 @@ Notes on INTELLIGENCE
 	This curve can be easily adjusted
 	Maybe it would be necessary to do this for Strength, Agility, Dexterity, and Perception too? 
 		Or would we just go with a "Fight to the last breath" or adrenaline-fueled fight or flight sort of thing?
+		Instincts may be an easy excuse to ignore this
+
+
+
+OTHER CHECKS AND THINGS
+ObjectDurability is determined by the object that the player is interacting with in the world
+
+LockPickedChance = 0.10 + 0.005*CRAFTINESS + 0.0015*LUCK 	//Base chance of 10%, Max Chance of 75%
+ObjectDestroyedChance = 					//Base Chance of 05%, Max Chance of 95%
+	0.05 + 0.0075*STRENGTH + (32 / [Math.PI] * arctan(CurrentStaminaPercent / 10) )
