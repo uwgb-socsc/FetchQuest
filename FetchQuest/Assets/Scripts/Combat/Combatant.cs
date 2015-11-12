@@ -29,6 +29,11 @@ public class Combatant : MonoBehaviour {
 
     double hp { get; set; }
 
+    bool isAlive { get; set; }
+    bool canAttack { get; set; }
+    bool canItem { get; set; }
+    bool canRun { get; set; }
+
     //a list for attacks
     //a list for items. 
     
@@ -42,6 +47,6 @@ public class Combatant : MonoBehaviour {
 	}
     void TakeDamage(double damage)
     {
-        throw new System.NotImplementedException();
+        hp -= damage;
     }
 }
