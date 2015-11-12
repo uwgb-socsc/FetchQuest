@@ -1,0 +1,14 @@
+BaseAttackPower and BaseAttackAccuracy are determined by the Attack
+STRENGTH, LUCK1 are determined by the Attacker
+DEFENSE, STAMINA, PERCEPTION, DEXTERITY, LUCK2 are determined by the Defender
+CriticalModifier is determined by a special trait or is "1" by default
+AdditionalPowerStat and AdditionalAccuracyStat are determined by a special trait or are "0" by default
+
+AttackPower = BaseAttackPower * (STRENGTH + AdditionalPowerStat)
+CriticalChance = 0.05 + 0.002 * LUCK1
+DamageTaken = AttackPower / (DEFENSE + AdditionalPowerStat) * CriticalPower
+StaminaRemaining = STAMINA - DamageTaken
+CriticalPower = 1  if  RandomNumber(0,100)>CriticalChance
+CriticalPower = 1.5 * CriticalModifier if  RandomNumber(0,100)<=CriticalChance
+AttackAccuracy = BaseAttackAccuracy * (PERCEPTION + AdditionalAccuracyStat)
+AttackHitChance = AttackAccuracy / (DEXTERITY + (LUCK2 + AdditionalAccuracyStat)/2)
