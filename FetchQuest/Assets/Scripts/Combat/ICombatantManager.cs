@@ -3,8 +3,9 @@ using System.Collections;
 
 public interface ICombatantManager  {
 
-    Attack.Special choose();
+    Combat.choices choose();
     Attack Achoice();
     Combatant TargetChoice();
     Item Ichoice();
+    double getTurnDecider();
 }

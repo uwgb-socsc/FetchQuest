@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class AiCombatantManager : ICombatantManager {
 
-    public Attack.Special choose()
+    public Combat.choices choose()
     {
         throw new System.NotImplementedException();
     }
@@ -18,5 +19,10 @@ public class AiCombatantManager : ICombatantManager {
     public Item Ichoice()
     {
         throw new System.NotImplementedException();
+    }
+
+    public double getTurnDecider()
+    {
+        throw new NotImplementedException();
     }
 }

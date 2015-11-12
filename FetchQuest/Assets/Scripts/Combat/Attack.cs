@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class Attack : MonoBehaviour {
-    string name;
-    string description;
-    double power;
+    string name { get; set; }
+    string description { get; set; }
+    double power { get; set; }
     public enum Special {spec1, spec2, spec3, spec4, spec5, spec6 }; //these are special effects rename them later. SERIOUSLY DO NOT LEAVE THEM THIS WAY WHEN WE DECIDE!
 
 	// Use this for initialization
