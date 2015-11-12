@@ -4,7 +4,7 @@ Intelligence
 Perception
 Agility
 Luck
-Tool Use*
+Tool Use* (Craftiness? any opinions?)
 Dexterity
 Defense
 Strength

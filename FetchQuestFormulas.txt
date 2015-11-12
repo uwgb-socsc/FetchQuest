@@ -1,3 +1,4 @@
+Turn order is determined directly by AGILITY of Attacker
 BaseAttackPower and BaseAttackAccuracy are determined by the Attack
 STRENGTH, LUCK1 are determined by the Attacker
 DEFENSE, STAMINA, PERCEPTION, DEXTERITY, LUCK2 are determined by the Defender
@@ -12,3 +13,24 @@ CriticalPower = 1  if  RandomNumber(0,100)>CriticalChance
 CriticalPower = 1.5 * CriticalModifier if  RandomNumber(0,100)<=CriticalChance
 AttackAccuracy = BaseAttackAccuracy * (PERCEPTION + AdditionalAccuracyStat)
 AttackHitChance = AttackAccuracy / (DEXTERITY + (LUCK2 + AdditionalAccuracyStat)/2)
+FleeChance = (PERCEPTION + AGILITY + DEXTERITY) / 3
+
+
+STRENGTH     = BaseStrength     + StrengthInvestment     + WeaponPower
+DEFENSE      = BaseDefense      + DefenseInvestment      + ArmorStrength
+STAMINA      = BaseStamina      + StaminaInvestment      + ??
+PERCEPTION   = BasePerception   + PerceptionInvestment   + WeatherFactors
+DEXTERITY    = BaseDexterity    + DexterityInvestment    + EnvironmentalFactors
+AGILITY      = BaseAgility      + AgilityInvestment      - ArmorWeight/2
+LUCK         = BaseLuck         + LuckInvestment         + (ArmorLuck + ItemLuck)
+CHARISMA     = BaseCharisma     + CharismaInvestment     + ArmorAppeal
+INTELLIGENCE = BaseIntelligence + IntelligenceInvestment - (85 - (200/[Math.PI]) * arctan(CurrentStaminaPercent / 25) )
+CRAFTINESS   = BaseCraftiness   + CraftinessInvestment   + ItemAssistance
+
+Notes on INTELLIGENCE
+	the last part of INTELLIGENCE is asymptotic to 0
+		As CurrentStaminaPercent gets closer to 100 , (85 - ... arctan(...) ) gets closer to Zero
+	INTELLIGENCE will decrease as the player's energy decreases
+	This curve can be easily adjusted
+	Maybe it would be necessary to do this for Strength, Agility, Dexterity, and Perception too? 
+		Or would we just go with a "Fight to the last breath" or adrenaline-fueled fight or flight sort of thing?
