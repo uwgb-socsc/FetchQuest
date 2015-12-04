@@ -6,9 +6,11 @@ public class movementComputer : MonoBehaviour {
     private bool isGrounded = true;
     private bool sprinting = false;
     private bool sneaking = false;
-    //    private bool isLocked = true;
+    private bool isLocked = true;
     private float mouseX;
     private float mouseY;
+    private float lockMouse;
+    private float lockDelay;
 
     public float jumpHeight = 8f;
     public float moveSpeed = .3f;
@@ -16,23 +18,28 @@ public class movementComputer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
+        Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-/*        if (isLocked)
+        if (Input.GetKey(KeyCode.Escape))
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            isLocked = false;
+            Cursor.visible = true;
         }
-        else
+        lockDelay++;
+        if(lockDelay == 1f && isLocked)
         {
             Cursor.lockState = CursorLockMode.None;
-        }*/
-
+        }
+        else if (lockDelay > 1f && isLocked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            lockDelay = 0f;
+        }
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
-        mouseX = (Input.mousePosition.x - Screen.width / 2) / 2;
-        mouseY = -(Input.mousePosition.y - Screen.height / 2) / 2;
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.DownArrow))
         {
@@ -87,6 +94,7 @@ public class movementComputer : MonoBehaviour {
         {
             mouseX -= 360;
         }
+        
         transform.eulerAngles = new Vector3(0.0f, mouseX, 0.0f);
         if (mouseY < -70) 
         {
@@ -99,14 +107,16 @@ public class movementComputer : MonoBehaviour {
 
         Camera.main.transform.eulerAngles = new Vector3(mouseY, mouseX, 0.0f);
 
-        /*        if(Input.GetKeyDown(KeyCode.Escape))
-                {
-                    isLocked = false;
-                }
-                else if(Input.GetKeyDown(KeyCode.F9))
-                {
-                    isLocked = true;
-                }*/
+        if (isLocked)
+        {
+            mouseX += (Input.mousePosition.x - Screen.width / 2) / 2 + .5f;
+            mouseY -= (Input.mousePosition.y - Screen.height / 2) / 2 - 9f;
+        }
+        else
+        {
+            mouseX = (Input.mousePosition.x - Screen.width / 2) / 2 + .5f;
+            mouseY = -(Input.mousePosition.y - Screen.height / 2) / 2 - 9f;
+        }
     }
 
     void OnCollisionEnter(Collision floor) {
