@@ -3,10 +3,14 @@ using System.Collections;
 
 public class movementComputer : MonoBehaviour {
     private Rigidbody rb;
+
     private bool isGrounded = true;
     private bool sprinting = false;
     private bool sneaking = false;
     private bool isLocked = true;
+
+    private int escHit = 0;
+
     private float mouseX;
     private float mouseY;
     private float lockMouse;
@@ -23,11 +27,12 @@ public class movementComputer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             isLocked = false;
             Cursor.visible = true;
         }
+
         lockDelay++;
         if(lockDelay == 1f && isLocked)
         {
