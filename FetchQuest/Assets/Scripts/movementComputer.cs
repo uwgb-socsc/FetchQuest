@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class movementComputer : MonoBehaviour {
+public class movementComputer : MonoBehaviour
+{
     private Rigidbody rb;
 
     private bool isGrounded = true;
     private bool sprinting = false;
     private bool sneaking = false;
     private bool isLocked = true;
+    private bool walled = false;
 
     private int escHit = 0;
 
+    private float wallTouch;
     private float mouseX;
     private float mouseY;
     private float lockMouse;
@@ -20,13 +23,15 @@ public class movementComputer : MonoBehaviour {
     public float moveSpeed = .3f;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
         Cursor.visible = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isLocked = false;
@@ -34,7 +39,7 @@ public class movementComputer : MonoBehaviour {
         }
 
         lockDelay++;
-        if(lockDelay == 1f && isLocked)
+        if (lockDelay == 1f && isLocked)
         {
             Cursor.lockState = CursorLockMode.None;
         }
@@ -80,7 +85,7 @@ public class movementComputer : MonoBehaviour {
             transform.Translate(moveHorizontal * moveSpeed, 0.0f, moveVertical * moveSpeed, Space.Self);
         }
 
-            if ((transform.rotation.x != 0.0f) || (transform.rotation.z != 0.0f))
+        if ((transform.rotation.x != 0.0f) || (transform.rotation.z != 0.0f))
         {
             transform.eulerAngles = new Vector3(0.0f, transform.rotation.y, 0.0f);
         }
@@ -89,6 +94,12 @@ public class movementComputer : MonoBehaviour {
         {
             isGrounded = false;
             rb.velocity = new Vector3(0.0f, jumpHeight, 0.0f);
+        }
+        else if (Input.GetButton("Jump") && wallTouch == 0 && walled)
+        {
+            mouseX += 180;
+            rb.velocity = new Vector3(0.0f, jumpHeight, 0.0f);
+            wallTouch++;
         }
 
         if (mouseX <= -180)
@@ -99,9 +110,9 @@ public class movementComputer : MonoBehaviour {
         {
             mouseX -= 360;
         }
-        
+
         transform.eulerAngles = new Vector3(0.0f, mouseX, 0.0f);
-        if (mouseY < -70) 
+        if (mouseY < -70)
         {
             mouseY = -70;
         }
@@ -122,11 +133,28 @@ public class movementComputer : MonoBehaviour {
             mouseX = (Input.mousePosition.x - Screen.width / 2) / 2 + .5f;
             mouseY = -(Input.mousePosition.y - Screen.height / 2) / 2 - 9f;
         }
+
+        print(walled);
     }
 
-    void OnCollisionEnter(Collision floor) {
-        if (floor.collider.tag == "Floor") {
+    void OnCollisionEnter(Collision objects)
+    {
+        if (objects.collider.tag == "Floor")
+        {
             isGrounded = true;
+            wallTouch = 0;
+            walled = false;
+        }
+        if (objects.collider.tag == "Wall")
+        {
+            walled = true;
+        }
+    }
+
+    void OnCollisionExit(Collision objects) {
+        if (objects.collider.tag == "Wall")
+        {
+            walled = false;
         }
     }
 }
