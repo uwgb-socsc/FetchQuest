@@ -20,6 +20,7 @@ public class Combat : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        //assumes combatantManagers are attached. Could be changed for combatants 
         combatantManagers = GetComponentsInChildren<ICombatantManager>();
         listOfCombatantManagers = new List<ICombatantManager>(combatantManagers);
         listOfCombatantManagers.Sort(new CombatantComparer());
@@ -38,11 +39,12 @@ public class Combat : MonoBehaviour {
                 choiceType = something.choose(array/list of enemies)
                 if choiceType == attack
                     Achoice = something.Achoice()
-                    target = something.chooseTarget(); The target is an actual combatant so just calculate damage and do it
+                    target = something.chooseTarget(Achoice); The target is an actual combatant so just calculate damage and do it
                     CalcDamage()
                     target.takeDamage()
                 if choiceType == item
                     Ichoice = something.Ichoice()
+                    something.chooseTarget(Ichoice)
                     UseItem(Ichoice)
 
         */

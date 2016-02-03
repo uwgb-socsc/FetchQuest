@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Item : MonoBehaviour {
 
+    //item is consumable?
+    //items can heal?
+
+
 	// Use this for initialization
 	void Start () {
 	
