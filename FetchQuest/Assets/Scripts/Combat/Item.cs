@@ -1,19 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item : MonoBehaviour {
+public class Item  {
 
-    //item is consumable?
-    //items can heal?
-
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public string name;
+    public string description;
 }
