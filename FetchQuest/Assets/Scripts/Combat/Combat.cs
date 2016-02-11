@@ -17,13 +17,21 @@ public class Combat : MonoBehaviour {
     private ICombatantManager[] combatantManagers; //this my be switched to combatant instead. We'll see.
     private List<ICombatantManager> listOfCombatantManagers;
     public enum choices { attack, item, run };
-    
+    public int turnNum;
+
+    private Combatant[] combatants;
+    private List<Combatant> listOfCombatants;
+
 	// Use this for initialization
 	void Start () {
+
+        combatants = GetComponentsInChildren<Combatant>();
+        listOfCombatants = new List<Combatant>();
+        listOfCombatants.Sort(new CombatantComparer());
         //assumes combatantManagers are attached. Could be changed for combatants 
-        combatantManagers = GetComponentsInChildren<ICombatantManager>();
-        listOfCombatantManagers = new List<ICombatantManager>(combatantManagers);
-        listOfCombatantManagers.Sort(new CombatantComparer());
+        //combatantManagers = GetComponentsInChildren<ICombatantManager>();
+        //listOfCombatantManagers = new List<ICombatantManager>(combatantManagers);
+       // listOfCombatantManagers.Sort(new CombatantComparer());
 	}
 	
 	// Update is called once per frame
