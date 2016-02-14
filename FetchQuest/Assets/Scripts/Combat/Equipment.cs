@@ -8,4 +8,4 @@ public class Equipment : Item {
     public EquipType type;
 	
 	}
-}
+
