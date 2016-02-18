@@ -36,10 +36,22 @@ public class Combat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    //call RunCombatTurn todo a turn
 	}
-    void RunCombat()
+    void RunCombatTurn()
     {
+        //All combatants decide what they are doing.
+        //AI picks what they will do.
+        //ask player what they will do.
+        //throw those choices into a priority queue 
+        //Go through each to handle the graphical aspect of the combat,
+        //and apply the effects like damage, healing, or whatever else there is.  
+        
+        foreach(Combatant c in listOfCombatants)
+        {
+                
+        }
+        //Below is old psuedocode. I have a different plan now.
         //while(combatStillGoingOn)
         /*
             turnNum++;
