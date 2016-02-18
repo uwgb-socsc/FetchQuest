@@ -17,7 +17,7 @@ public class Combatant : MonoBehaviour {
     Defense
     Strength
     */
-    ICombatantManager manager;
+    public ICombatantManager manager { get; set; }
     public double charisma { get; set; }
     public double stamina { get; set; }
     public double intelligence { get; set; }
@@ -37,17 +37,26 @@ public class Combatant : MonoBehaviour {
     public bool canRun { get; set; }
 
     List<Item> inventory;
-    Equipment slot1;
-    Equipment slot2;
-    Equipment slot3;
-    Equipment slot4;
-    Equipment slot5;
+    //Equipment slot1;
+    //Equipment slot2;
+    //Equipment slot3;
+    //Equipment slot4;
+    //Equipment slot5;
+    private Equipment[] armorSlots = new Equipment[4];
     Equipment weaponSlot;
     //
 
     //a list for attacks
     //a list for items. 
-    
+    public double getArmorValue()
+    {
+        double armor = 0.0;
+        for(int i = 0; i < armorSlots.Length; i++)
+        {
+            armor += armorSlots[i].EquipmentValue;
+        }
+        return armor;
+    }
     void Start () {
 	
 	}

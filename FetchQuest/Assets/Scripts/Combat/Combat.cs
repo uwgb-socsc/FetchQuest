@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 
 
 public class Combat : MonoBehaviour {
@@ -61,6 +61,28 @@ public class Combat : MonoBehaviour {
     }
     double CalcDamage(Combatant attacker, Combatant defender, Attack attack)
     {
-        throw new System.NotImplementedException();
+        System.Random gen = new System.Random();
+        double crit = 1.0;
+        double attackPower = 0.0;
+        double defensePower = 0.0;
+        
+        //does hit
+        if(gen.NextDouble() * 100 > (attack.accuracy + attacker.perception))
+        {
+            return 0.0;
+        }
+        //is crit
+       
+        if(gen.NextDouble()*100 < (0.05+0.02 * attacker.luck))
+        {
+            crit = 1.5;        
+        }
+        //do damage
+        attackPower = attack.power * attacker.strength;
+        defensePower = defender.defense + defender.getArmorValue();
+
+        //return
+        
+        return (attackPower / defensePower) * crit;
     }
 }
