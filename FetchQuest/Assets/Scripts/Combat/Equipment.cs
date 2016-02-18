@@ -7,10 +7,7 @@ public class Equipment : Item {
     public double EquipmentValue;
     public EquipType type;
 	
-<<<<<<< HEAD
+
 	
 }
-=======
-	}
 
->>>>>>> origin/master
