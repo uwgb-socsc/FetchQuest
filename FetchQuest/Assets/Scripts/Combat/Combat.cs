@@ -18,13 +18,13 @@ public class Combat : MonoBehaviour {
     private List<ICombatantManager> listOfCombatantManagers;
     public enum choices { attack, item, run };
     public int turnNum;
-
+    public List<CombatAction> actionQueue;
     private Combatant[] combatants;
     private List<Combatant> listOfCombatants;
 
 	// Use this for initialization
 	void Start () {
-
+        actionQueue = new List<CombatAction>();
         combatants = GetComponentsInChildren<Combatant>();
         listOfCombatants = new List<Combatant>();
         listOfCombatants.Sort(new CombatantComparer());
@@ -37,6 +37,12 @@ public class Combat : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    //call RunCombatTurn todo a turn
+        /*
+        if(conditionsToRunATurn == true)
+        {
+            RunCombatTurn();
+        }
+        */
 	}
     void RunCombatTurn()
     {
@@ -49,8 +55,9 @@ public class Combat : MonoBehaviour {
         
         foreach(Combatant c in listOfCombatants)
         {
-                
+            actionQueue.Add(c.manager.getAction(listOfCombatants));
         }
+        actionQueue.Sort();
         //Below is old psuedocode. I have a different plan now.
         //while(combatStillGoingOn)
         /*
