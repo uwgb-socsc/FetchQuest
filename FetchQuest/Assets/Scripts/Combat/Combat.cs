@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 
 
 public class Combat : MonoBehaviour {
@@ -17,21 +17,48 @@ public class Combat : MonoBehaviour {
     private ICombatantManager[] combatantManagers; //this my be switched to combatant instead. We'll see.
     private List<ICombatantManager> listOfCombatantManagers;
     public enum choices { attack, item, run };
-    
+    public int turnNum;
+    public List<CombatAction> actionQueue;
+    private Combatant[] combatants;
+    private List<Combatant> listOfCombatants;
+
 	// Use this for initialization
 	void Start () {
+        actionQueue = new List<CombatAction>();
+        combatants = GetComponentsInChildren<Combatant>();
+        listOfCombatants = new List<Combatant>();
+        listOfCombatants.Sort(new CombatantComparer());
         //assumes combatantManagers are attached. Could be changed for combatants 
-        combatantManagers = GetComponentsInChildren<ICombatantManager>();
-        listOfCombatantManagers = new List<ICombatantManager>(combatantManagers);
-        listOfCombatantManagers.Sort(new CombatantComparer());
+        //combatantManagers = GetComponentsInChildren<ICombatantManager>();
+        //listOfCombatantManagers = new List<ICombatantManager>(combatantManagers);
+       // listOfCombatantManagers.Sort(new CombatantComparer());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    //call RunCombatTurn todo a turn
+        /*
+        if(conditionsToRunATurn == true)
+        {
+            RunCombatTurn();
+        }
+        */
 	}
-    void RunCombat()
+    void RunCombatTurn()
     {
+        //All combatants decide what they are doing.
+        //AI picks what they will do.
+        //ask player what they will do.
+        //throw those choices into a priority queue 
+        //Go through each to handle the graphical aspect of the combat,
+        //and apply the effects like damage, healing, or whatever else there is.  
+        
+        foreach(Combatant c in listOfCombatants)
+        {
+            actionQueue.Add(c.manager.getAction(listOfCombatants));
+        }
+        actionQueue.Sort();
+        //Below is old psuedocode. I have a different plan now.
         //while(combatStillGoingOn)
         /*
             turnNum++;
@@ -53,6 +80,28 @@ public class Combat : MonoBehaviour {
     }
     double CalcDamage(Combatant attacker, Combatant defender, Attack attack)
     {
-        throw new System.NotImplementedException();
+        System.Random gen = new System.Random();
+        double crit = 1.0;
+        double attackPower = 0.0;
+        double defensePower = 0.0;
+        
+        //does hit
+        if(gen.NextDouble() * 100 > (attack.accuracy + attacker.perception))
+        {
+            return 0.0;
+        }
+        //is crit
+       
+        if(gen.NextDouble()*100 < (0.05+0.02 * attacker.luck))
+        {
+            crit = 1.5;        
+        }
+        //do damage
+        attackPower = attack.power * attacker.strength;
+        defensePower = defender.defense + defender.getArmorValue();
+
+        //return
+        
+        return (attackPower / defensePower) * crit;
     }
 }

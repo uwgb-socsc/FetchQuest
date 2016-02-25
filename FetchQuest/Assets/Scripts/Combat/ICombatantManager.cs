@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public interface ICombatantManager  {
 
-    Combat.choices choose();
-    Attack Achoice();
-    Combatant TargetChoice();
-    Item Ichoice();
-    double getTurnDecider();
+    CombatAction getAction(List<Combatant> participants);
 }
