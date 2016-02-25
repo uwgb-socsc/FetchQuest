@@ -1,0 +1,7 @@
+Helmet
+Cape
+legs n paws
+body
+
+weapon
+off hand
