@@ -21,6 +21,7 @@ public class Combat : MonoBehaviour {
     public List<CombatAction> actionQueue;
     private Combatant[] combatants;
     private List<Combatant> listOfCombatants;
+    private int turnState;
 
 	// Use this for initialization
 	void Start () {
@@ -36,13 +37,14 @@ public class Combat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    //call RunCombatTurn todo a turn
+        //call RunCombatTurn todo a turn
         /*
         if(conditionsToRunATurn == true)
         {
             RunCombatTurn();
         }
         */
+        RunCombatTurn();
 	}
     void RunCombatTurn()
     {
@@ -52,11 +54,48 @@ public class Combat : MonoBehaviour {
         //throw those choices into a priority queue 
         //Go through each to handle the graphical aspect of the combat,
         //and apply the effects like damage, healing, or whatever else there is.  
-        
-        foreach(Combatant c in listOfCombatants)
+        /*
+        turnState
+            0 nothing done, run setups
+            1 waiting to get all actions
+            2 wait for actions to be run
+            reset to 0 when all actions have been run.
+        */
+        if (turnState == 0)
         {
-            actionQueue.Add(c.manager.getAction(listOfCombatants));
+            foreach (Combatant c in listOfCombatants)
+            {
+                c.manager.setup(listOfCombatants);
+            }
+            turnState = 1;
+        }else if(turnState == 1)
+        {
+            if (actionQueue.Count <= listOfCombatants.Count)
+            {
+                foreach(Combatant c in listOfCombatants)
+                {
+                    if(c.manager.hasAction())
+                    {
+                        actionQueue.Add(c.manager.getAction());
+                    }
+                }
+            }
+            if(actionQueue.Count == listOfCombatants.Count)
+            {
+                turnState = 2;
+            }
+            if(actionQueue.Count > listOfCombatants.Count)
+            {
+                Console.Write("CombatantManagers should not have actions after they give out an action");
+
+            }
         }
+        if(turnState == 2)
+        {
+            //needs to flag whatever handles the animations and effects to do their thing so it can run the turn.
+            //there needs to be some kind of action executor script
+        }
+        
         actionQueue.Sort();
         //Below is old psuedocode. I have a different plan now.
         //while(combatStillGoingOn)

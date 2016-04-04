@@ -3,5 +3,7 @@ using System.Collections.Generic;
 
 public interface ICombatantManager  {
 
-    CombatAction getAction(List<Combatant> participants);
+    void setup(List<Combatant> participants);
+    CombatAction getAction();
+    bool hasAction();
 }

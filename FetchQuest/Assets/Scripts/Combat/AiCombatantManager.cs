@@ -5,11 +5,17 @@ using System.Collections.Generic;
 
 public class AiCombatantManager : ICombatantManager {
 
-    
-    public CombatAction getAction(List<Combatant> participants)
+    public void setup(List<Combatant> participants)
+    {
+
+    }
+    public CombatAction getAction()
     {
         throw new NotImplementedException();
     }
-
+    public bool hasAction()
+    {
+        throw new NotImplementedException();
+    }
     
 }
