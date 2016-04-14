@@ -25,15 +25,18 @@ public class Combat : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //Setup the combat scene
+        SetScene();
         actionQueue = new List<CombatAction>();
         combatants = GetComponentsInChildren<Combatant>();
         listOfCombatants = new List<Combatant>();
         listOfCombatants.Sort(new CombatantComparer());
+
         //assumes combatantManagers are attached. Could be changed for combatants 
         //combatantManagers = GetComponentsInChildren<ICombatantManager>();
         //listOfCombatantManagers = new List<ICombatantManager>(combatantManagers);
-       // listOfCombatantManagers.Sort(new CombatantComparer());
-	}
+        // listOfCombatantManagers.Sort(new CombatantComparer());
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -46,6 +49,19 @@ public class Combat : MonoBehaviour {
         */
         RunCombatTurn();
 	}
+    void SetScene()
+    {
+        //set the floor, skybox, etc.
+        //Place combatants
+        //UnityEngine.Object enemyCube = Resources.Load("Assets/Prefabs/RedCubeEnemy.prefab");
+        //UnityEngine.Object allyCube = Resources.Load("Assets/Prefabs/GreenCubeAlly.prefab");
+        List<GameObject> gObj = CombatantSingleton.getInstance().oCombatants;
+        foreach(GameObject o in gObj)
+        {
+            o.transform.parent = this.transform.parent; //makes the o (GameObject) a child of the Combat Scene
+            o.transform.position.Set(0.0f, 0.0f, 0.0f); //x,y,z hopefully we will place these a little bit more intelligently
+        }
+    }
     void RunCombatTurn()
     {
         //All combatants decide what they are doing.

@@ -13,7 +13,9 @@ public class CombatantSingleton {
     Singleton's maintain a single instance so that the data will be consistent no matter where you get
     it from
     */
-    public List<Combatant> combatants { get; set; } //set this before going into combatants get it when loading combat scene.
+    public List<GameObject> oCombatants { get; set; } //this holds the actual GameObjects
+    public List<Combatant> combatants { get; set; } //Get the Combatant scripts off of the GameObjects
+    
     private static CombatantSingleton instance = null;
     private CombatantSingleton()
     {
@@ -27,4 +29,5 @@ public class CombatantSingleton {
         }
         return instance;
     }
+    
 }

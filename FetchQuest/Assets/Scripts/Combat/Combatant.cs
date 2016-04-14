@@ -17,6 +17,7 @@ public class Combatant : MonoBehaviour {
     Defense
     Strength
     */
+    public string tTag { get; set; }
     public ICombatantManager manager { get; set; }
     public double charisma { get; set; }
     public double stamina { get; set; }
